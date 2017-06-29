@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { isArray } from '../../tools/tools.js'
 
 const { Item, SubMenu } = Menu;
-const { Sider } = Layout
+//const { Sider } = Layout
 const routes = require('../../routes.js');
 
 
@@ -56,7 +56,7 @@ class SilderMenu extends React.Component{
         let html = Object.keys(routes).map( route => 
              {
                  if( isArray (routes[route].children )  ){
-                     return (<SubMenu key={ route } title= { route }>{
+                     return (<SubMenu key={ route } title=  { <div><Icon type="laptop" /><span> { routes[route].title }</span></div>}>{
                         routes[route].children.map( r => {
                             return <Item key={ r.key}> <Link to={r.path}>{ r.title}</Link> </Item>
                         })
@@ -64,7 +64,7 @@ class SilderMenu extends React.Component{
                     
                  }else{
                      let _r = routes[route].children;
-                     return <Item key={ _r.key} ><Link to={_r.path}>{ _r.title }</Link></Item>
+                     return <Item key={ _r.key} ><Link to={_r.path}><Icon type={routes[route].iconType}></Icon>{ _r.title }</Link></Item>
                  }
              }
         ) 
@@ -90,12 +90,14 @@ class SilderMenu extends React.Component{
 
 export default SilderMenu
 
-                        // <Item key="home"><Link to="/"><Icon type="home"></Icon>首页</Link></Item>
-                        // <SubMenu key ='ui' title= { <div><Icon type="laptop" /><span>UI</span></div>} >
-                        //      <Item key="button"><Link to="/ui/btn">按钮</Link></Item>
-                        //      <Item key="icon"><Link to="/ui/icon">图标</Link></Item>
-                        //      <Item key="timepicker"><Link to="/ui/timepicker">时间选择器</Link></Item>
-                        //      <Item key="treeSelect"><Link to="/ui/treeSelect">树选择</Link></Item>
-                        //      <Item key="cascader"><Link to="/ui/cascader">联级选择</Link></Item>
-                        //      <Item key="table"><Link to="/ui/table">表格</Link></Item>
-                        // </SubMenu>
+
+//生成目录
+// <Item key="home"><Link to="/"><Icon type="home"></Icon>首页</Link></Item>
+// <SubMenu key ='ui' title= { <div><Icon type="laptop" /><span>UI</span></div>} >
+//      <Item key="button"><Link to="/ui/btn">按钮</Link></Item>
+//      <Item key="icon"><Link to="/ui/icon">图标</Link></Item>
+//      <Item key="timepicker"><Link to="/ui/timepicker">时间选择器</Link></Item>
+//      <Item key="treeSelect"><Link to="/ui/treeSelect">树选择</Link></Item>
+//      <Item key="cascader"><Link to="/ui/cascader">联级选择</Link></Item>
+//      <Item key="table"><Link to="/ui/table">表格</Link></Item>
+// </SubMenu>
